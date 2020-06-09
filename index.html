@@ -248,7 +248,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/06/09/mac-install-nginx-php/" itemprop="url">mac-install-nginx-php</a></h1>
+                <a class="post-title-link" href="/2020/06/09/mac-install-nginx-php/" itemprop="url">Mac 安裝 Nginx、PHP</a></h1>
         
 
         <div class="post-meta">
@@ -300,7 +300,87 @@
       
         
           
-            
+            <p>因工作需要的關係原本在 MacBook Air 上使用 MAMP 的因不是 Pro 版只能使用一個 Virtual Host 所以更改為安裝在系統內<br>
+先利用 Homebrew 來安裝 Nginx</p>
+<h1>Homebrew 是什麼？</h1>
+<p><a href="http://brew.sh" target="_blank" rel="noopener">homebrew</a> 是在 OS X 不可缺少的套件管理器，與 Linux 下的 apt-get 或 yum</p>
+<h2 id="安裝-Homebrew">安裝 Homebrew</h2>
+<p>打開終端機將下面的指令貼上即可：<br>
+<code>/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</code><br>
+安裝完後即可使用 <code>brew search/install/uninstall/update FORMULA</code> 來做操作</p>
+<h1>安裝 Nginx</h1>
+<p><code>brew install nginx</code></p>
+<p>##安裝完後可用以下指令操作<br>
+<code>nginx -t</code> 測試 Nginx 設定有無錯誤<br>
+<code>sudo nginx</code> 開啟 Nginx<br>
+<code>nginx -s reload|reopen|stop|quit</code> 重新加載配置｜重新啟用｜停止｜退出 Nginx</p>
+<p>##開機自動啟用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ln -sfv &#x2F;usr&#x2F;local&#x2F;opt&#x2F;nginx&#x2F;*.plist ~&#x2F;Library&#x2F;LaunchAgents</span><br><span class="line">launchctl load ~&#x2F;Library&#x2F;LaunchAgents&#x2F;homebrew.mxcl.nginx.plist</span><br></pre></td></tr></table></figure>
+<p>##監聽 80 port</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chown root:wheel &#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;nginx&#x2F;1.10.2_1&#x2F;bin&#x2F;nginx</span><br><span class="line">sudo chmod u+s &#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;nginx&#x2F;1.10.2_1&#x2F;bin&#x2F;nginx</span><br></pre></td></tr></table></figure>
+<p>##設定配置<br>
+依照 ubuntu 的擺放設定來處理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p &#x2F;usr&#x2F;local&#x2F;var&#x2F;logs&#x2F;nginx</span><br><span class="line">mkdir -p &#x2F;usr&#x2F;local&#x2F;etc&#x2F;nginx&#x2F;sites-available</span><br><span class="line">mkdir -p &#x2F;usr&#x2F;local&#x2F;etc&#x2F;nginx&#x2F;sites-enabled</span><br><span class="line">mkdir -p &#x2F;usr&#x2F;local&#x2F;etc&#x2F;nginx&#x2F;conf.d</span><br><span class="line">mkdir -p &#x2F;usr&#x2F;local&#x2F;etc&#x2F;nginx&#x2F;ssl</span><br></pre></td></tr></table></figure>
+<h2 id="Nginx-全域設定">Nginx 全域設定</h2>
+<p>vi /usr/local/etc/nginx/nginx.conf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">worker_processes  1;</span><br><span class="line">error_log   &#x2F;usr&#x2F;local&#x2F;var&#x2F;log&#x2F;nginx&#x2F;error.log debug;</span><br><span class="line">pid        &#x2F;usr&#x2F;local&#x2F;var&#x2F;run&#x2F;nginx.pid;</span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    worker_connections  256;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    include       mime.types;</span><br><span class="line">    default_type  application&#x2F;octet-stream;</span><br><span class="line"></span><br><span class="line">    log_format main &#39;$remote_addr - $remote_user [$time_local] &#39;</span><br><span class="line">        &#39;&quot;$request&quot; $status $body_bytes_sent &#39;</span><br><span class="line">        &#39;&quot;$http_referer&quot; &quot;$http_user_agent&quot; &#39;</span><br><span class="line">        &#39;&quot;$http_x_forwarded_for&quot; $host $request_time $upstream_response_time $scheme &#39;</span><br><span class="line">        &#39;$cookie_evalogin&#39;;</span><br><span class="line"></span><br><span class="line">    access_log  &#x2F;usr&#x2F;local&#x2F;var&#x2F;log&#x2F;access.log  main;</span><br><span class="line"></span><br><span class="line">    sendfile        on;</span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line">    port_in_redirect off;</span><br><span class="line"></span><br><span class="line">    include &#x2F;usr&#x2F;local&#x2F;etc&#x2F;nginx&#x2F;sites-enabled&#x2F;*;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>##Nginx php-fpm 設定<br>
+vi /usr/local/etc/nginx/conf.d/php-fpm</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">location ~ \.php$ &#123;</span><br><span class="line">    try_files                   $uri &#x3D; 404;</span><br><span class="line">    fastcgi_pass                127.0.0.1:9000;</span><br><span class="line">    fastcgi_index               index.php;</span><br><span class="line">    fastcgi_intercept_errors    on;</span><br><span class="line">    include &#x2F;usr&#x2F;local&#x2F;etc&#x2F;nginx&#x2F;fastcgi.conf;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Virtual-Site-設定">Virtual Site 設定</h2>
+<p>在 <code>usr/local/etc/nginx/sites-enable</code> 目錄下，一個文件對應一個 Virtual Site，設定 Web Server 目錄為 /var/www</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir -p &#x2F;var&#x2F;www</span><br><span class="line">sudo chown :staff &#x2F;var&#x2F;www</span><br><span class="line">sudo chmod 775 &#x2F;var&#x2F;www</span><br><span class="line">vi &#x2F;var&#x2F;www&#x2F;info.php</span><br><span class="line">vi &#x2F;var&#x2F;www&#x2F;index.html</span><br><span class="line">vi &#x2F;var&#x2F;www&#x2F;403.html</span><br><span class="line">vi &#x2F;var&#x2F;www&#x2F;404.html</span><br></pre></td></tr></table></figure>
+<h3 id="Default-Site">Default Site</h3>
+<p>vi /usr/local/etc/nginx/sites-enabled/default</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       80;</span><br><span class="line">    server_name  localhost;</span><br><span class="line">    root         &#x2F;var&#x2F;www&#x2F;;</span><br><span class="line"></span><br><span class="line">    access_log  &#x2F;usr&#x2F;local&#x2F;var&#x2F;log&#x2F;nginx&#x2F;default.access.log  main;</span><br><span class="line"></span><br><span class="line">    location &#x2F; &#123;</span><br><span class="line">        index  index.html index.htm index.php;</span><br><span class="line">        autoindex   on;</span><br><span class="line">        include     &#x2F;usr&#x2F;local&#x2F;etc&#x2F;nginx&#x2F;conf.d&#x2F;php-fpm;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location &#x3D; &#x2F;info &#123;</span><br><span class="line">        allow   127.0.0.1;</span><br><span class="line">        deny    all;</span><br><span class="line">        rewrite (.*) &#x2F;.info.php;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    error_page  404     &#x2F;404.html;</span><br><span class="line">    error_page  403     &#x2F;403.html;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Default-SSL-Site">Default SSL Site</h3>
+<p>vi /usr/local/etc/nginx/sites-enabled/default-ssl</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       443;</span><br><span class="line">    server_name  localhost;</span><br><span class="line">    root       &#x2F;var&#x2F;www&#x2F;;</span><br><span class="line"></span><br><span class="line">    access_log  &#x2F;usr&#x2F;local&#x2F;var&#x2F;log&#x2F;nginx&#x2F;default-ssl.access.log  main;</span><br><span class="line"></span><br><span class="line">    ssl                  on;</span><br><span class="line">    ssl_certificate      ssl&#x2F;ssl.crt;</span><br><span class="line">    ssl_certificate_key  ssl&#x2F;ssl.key;</span><br><span class="line"></span><br><span class="line">    ssl_session_timeout  5m;</span><br><span class="line"></span><br><span class="line">    ssl_protocols  SSLv2 SSLv3 TLSv1;</span><br><span class="line">    ssl_ciphers  HIGH:!aNULL:!MD5;</span><br><span class="line">    ssl_prefer_server_ciphers   on;</span><br><span class="line"></span><br><span class="line">    location &#x2F; &#123;</span><br><span class="line">        include   &#x2F;usr&#x2F;local&#x2F;etc&#x2F;nginx&#x2F;conf.d&#x2F;php-fpm;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location &#x3D; &#x2F;info &#123;</span><br><span class="line">        allow   127.0.0.1;</span><br><span class="line">        deny    all;</span><br><span class="line">        rewrite (.*) &#x2F;.info.php;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    error_page  404     &#x2F;404.html;</span><br><span class="line">    error_page  403     &#x2F;403.html;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>#安裝 PHP 5.6<br>
+使用 php-fpm</p>
+<p>##加入官方 Source</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">brew tap homebrew&#x2F;dupes</span><br><span class="line">brew tap homebrew&#x2F;versions</span><br><span class="line">brew tap homebrew&#x2F;php</span><br></pre></td></tr></table></figure>
+<p>##安裝 PHP<br>
+<code>brew install php56 --with-debug --with-homebrew-curl --with-homebrew-libxslt --with-imap</code><br>
+安裝完後會有一些提示說明，因 Mac 有自帶 PHP，所以要修改系統路徑，優先使用 brew 所安裝的版本<br>
+<code>echo 'export PATH=&quot;$(brew --prefix homebrew/php/php56)/bin:$PATH&quot;' &gt;&gt; ~/.bashrc</code></p>
+<p>###安裝 PHP Extension<br>
+可使用 <code>brew search php56</code> 來查詢有那些 Extension 可以使用<br>
+<code>brew install php56-gearman php56-msgpack php56-memcache php56-memcached php56-mongo php56-redis php56-zookeeper php56-xdebug</code></p>
+<p>###測試 PHP<br>
+<code>php -v</code></p>
+<p>若出現 Extension 啟動錯誤可以使用 <code>brew reinstall Extension --build-from-souce</code> 重新安裝如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Cannot load Xdebug - it was built with configuration API220131226,NTS, whereas running engine is API220131226,NTS,debug</span><br><span class="line">PHP Warning:  PHP Startup: igbinary: Unable to initialize module</span><br><span class="line">Module compiled with build ID&#x3D;API20131226,NTS</span><br><span class="line">PHP    compiled with build ID&#x3D;API20131226,NTS,debug</span><br><span class="line">These options need to match</span><br><span class="line"> in Unknown on line 0</span><br></pre></td></tr></table></figure>
+<p>就需要重裝 php56-xdebug 及 php56-igbinary<br>
+<code>brew reinstall php56-xdebug --build-from-source php56-igbinary --build-from-source</code></p>
+<p>##啟動 php-fpm<br>
+###測試 php-fpm<br>
+<code>php-fpm -v</code></p>
+<p>###啟動 php-fpm<br>
+<code>sudo php-fpm -D</code></p>
+<p>###關閉 php-fpm<br>
+<code>sudo killall php-fpm</code></p>
+<p>###查看 php-fpm 狀態<br>
+<code>lsof -Pni4 | grep LISTEN | grep php</code></p>
+<p>###設定開機啟動 php-fpm</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ln -sfv &#x2F;usr&#x2F;local&#x2F;opt&#x2F;php56&#x2F;*.plist ~&#x2F;Library&#x2F;LaunchAgents</span><br><span class="line">launchctl load ~&#x2F;Library&#x2F;LaunchAgents&#x2F;homebrew.mxcl.php56.plist</span><br></pre></td></tr></table></figure>
+<p>###啟動 php-fpm 可能會遇到的情況<br>
+錯誤訊息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ERROR: failed to open configuration file &#39;&#x2F;private&#x2F;etc&#x2F;php-fpm.conf&#39;: No such file or directory </span><br><span class="line">ERROR: failed to load configuration file &#39;&#x2F;private&#x2F;etc&#x2F;php-fpm.conf&#39;</span><br><span class="line">ERROR: FPM initialization failed</span><br></pre></td></tr></table></figure>
+<p>解決方式<br>
+<code>sudo cp /private/etc/php-fpm.conf.default /private/etc/php-fpm.conf</code><br>
+錯誤訊息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ERROR: failed to open error_log (&#x2F;usr&#x2F;var&#x2F;log&#x2F;php-fpm.log): No such file or directory (2)</span><br><span class="line">ERROR: failed to post process the configuration</span><br><span class="line">ERROR: FPM initialization failed</span><br></pre></td></tr></table></figure>
+<p>解決方式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo vi &#x2F;private&#x2F;etc&#x2F;php-fpm.conf    </span><br><span class="line">#在 &#96;error_log&#96; 下面添加：</span><br><span class="line">error_log &#x3D; &#x2F;usr&#x2F;local&#x2F;var&#x2F;log&#x2F;php-fpm.log</span><br><span class="line">pid &#x3D; &#x2F;usr&#x2F;local&#x2F;var&#x2F;run&#x2F;php-fpm.pid</span><br></pre></td></tr></table></figure>
+<p>參考<br>
+<a href="http://youyusan.github.io/2016/01/30/php-nginx-in-mac/" target="_blank" rel="noopener">http://youyusan.github.io/2016/01/30/php-nginx-in-mac/</a><br>
+<a href="http://avnpc.com/pages/install-lnmp-on-osx" target="_blank" rel="noopener">http://avnpc.com/pages/install-lnmp-on-osx</a><br>
+<a href="https://hinine.com/create-and-deploy-a-self-signed-ssl-certificate-to-nginx/" target="_blank" rel="noopener">https://hinine.com/create-and-deploy-a-self-signed-ssl-certificate-to-nginx/</a><br>
+<a href="http://aevit.xyz/2015/12/16/MAC-NMP/" target="_blank" rel="noopener">http://aevit.xyz/2015/12/16/MAC-NMP/</a><br>
+<a href="https://github.com/Homebrew/homebrew-php/issues/3101" target="_blank" rel="noopener">https://github.com/Homebrew/homebrew-php/issues/3101</a><br>
+<a href="https://segmentfault.com/a/1190000005090828" target="_blank" rel="noopener">https://segmentfault.com/a/1190000005090828</a></p>
+
           
         
       
@@ -1633,7 +1713,7 @@ SSKeychain 1.2.3</p>
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">標籤</span>
                 
               </div>
