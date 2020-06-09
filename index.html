@@ -229,7 +229,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://loume.github.io/2020/06/09/docker_priviledged_params/">
+    <link itemprop="mainEntityOfPage" href="https://loume.github.io/2020/06/09/mac-install-nginx-php/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Loume">
@@ -248,7 +248,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/06/09/docker_priviledged_params/" itemprop="url">Docker privileged 參數</a></h1>
+                <a class="post-title-link" href="/2020/06/09/mac-install-nginx-php/" itemprop="url">mac-install-nginx-php</a></h1>
         
 
         <div class="post-meta">
@@ -260,7 +260,7 @@
               
                 <span class="post-meta-item-text">發表於</span>
               
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-06-09T15:11:59+08:00">
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-06-09T15:34:38+08:00">
                 2020-06-09
               </time>
             
@@ -300,9 +300,1233 @@
       
         
           
-            <p>透過 Docker 包裝來運行 Angular 9container  所開發的 web 在 ng serve 時會遇到一堆錯誤<br>
-原因是因為 <code>fs.inotify.max_user_watches</code> 所設定的值太少, 而要監控的檔案太多因此而有此錯誤發生, 故需要在 Docker 執行時增加 priviledged 參數</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it --privileged</span><br></pre></td></tr></table></figure>
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://loume.github.io/2020/06/09/javascript/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Loume">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Loume's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/09/javascript/" itemprop="url">JavaScript</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-06-09T15:34:06+08:00">
+                2020-06-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="字串轉換為數字">字串轉換為數字</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Number(String);</span><br></pre></td></tr></table></figure>
+<h2 id="數字轉換為字串">數字轉換為字串</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Number.toString();</span><br></pre></td></tr></table></figure>
+<h2 id="顯示數字千分位">顯示數字千分位</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function FormatNumber(n) &#123;</span><br><span class="line">    n +&#x3D; &quot;&quot;;</span><br><span class="line">    var arr &#x3D; n.split(&quot;.&quot;);</span><br><span class="line">    var re &#x3D; &#x2F;(\d&#123;1,3&#125;)(?&#x3D;(\d&#123;3&#125;)+$)&#x2F;g;</span><br><span class="line">    return arr[0].replace(re, &quot;$1,&quot;) + (arr.length &#x3D;&#x3D; 2 ? &quot;.&quot; + arr[1] : &quot;&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="四拾五入至小數點">四拾五入至小數點</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var roundDecimal &#x3D; function (val, precision) &#123;</span><br><span class="line">    return Math.round(Math.round(val * Math.pow(10, (precision || 0) + 1)) &#x2F; 10) &#x2F; Math.pow(10, (precision || 0));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://loume.github.io/2020/06/09/ubuntu-install-lemp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Loume">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Loume's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/09/ubuntu-install-lemp/" itemprop="url">Ubuntu 14.04 安裝 LEMP</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-06-09T15:33:02+08:00">
+                2020-06-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>首先更新一下 apt package index</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+<p>之後先安裝 nginx</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nginx</span><br></pre></td></tr></table></figure>
+<p>如此安裝完成後即可開啟瀏覽器看 nignx 首頁啦</p>
+<p>之後再安裝 MySQL</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install mysql-server</span><br></pre></td></tr></table></figure>
+<p>在安裝時會詢問 MySQL root 的 password, 此時即設定一個 password 之後 MySQL root 的登入密碼即為此組</p>
+<p>之後要幫 MySQL 設定一些資料結構以儲存 MySQL 的資訊</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mysql_install_db</span><br></pre></td></tr></table></figure>
+<p>然後再設定安全性的部份</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mysql_secure_installation</span><br></pre></td></tr></table></figure>
+<p>之後即依照提示來選擇 Y/N 如此即完成 MySQL 部份</p>
+<p>再來即要安裝 PHP 的部份</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install php5-fpm php5-mysql</span><br></pre></td></tr></table></figure>
+<p>安裝好後修改一下 php5-fpm</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi &#x2F;etc&#x2F;php5&#x2F;fpm&#x2F;php.ini</span><br></pre></td></tr></table></figure>
+<p>找到 <code>cgi.fix_pathinfo</code> 將此設定開啟並設定 <code>cgi.fix_pathinfo = 0</code> 然後重啟</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service php5-fpm restart</span><br></pre></td></tr></table></figure>
+<p>接著修正 nginx 的設定檔</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi &#x2F;etc&#x2F;nginx&#x2F;sites-available&#x2F;default</span><br></pre></td></tr></table></figure>
+<p>修改為</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80 default_server;</span><br><span class="line">    listen [::]:80 default_server ipv6only&#x3D;on;</span><br><span class="line"></span><br><span class="line">    root &#x2F;var&#x2F;www&#x2F;html;</span><br><span class="line">    index index.php index.html index.htm;</span><br><span class="line"></span><br><span class="line">    server_name server_domain_name_or_IP;</span><br><span class="line"></span><br><span class="line">    location &#x2F; &#123;</span><br><span class="line">        try_files $uri $uri&#x2F; &#x3D;404;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    error_page 404 &#x2F;404.html;</span><br><span class="line">    error_page 500 502 503 504 &#x2F;50x.html;</span><br><span class="line">    location &#x3D; &#x2F;50x.html &#123;</span><br><span class="line">        root &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location ~ \.php$ &#123;</span><br><span class="line">        try_files $uri &#x3D;404;</span><br><span class="line">        fastcgi_split_path_info ^(.+\.php)(&#x2F;.+)$;</span><br><span class="line">        fastcgi_pass unix:&#x2F;var&#x2F;run&#x2F;php5-fpm.sock;</span><br><span class="line">        fastcgi_index index.php;</span><br><span class="line">        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;</span><br><span class="line">        include fastcgi_params;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>之後將 nginx 重啟</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service nginx restart</span><br></pre></td></tr></table></figure>
+<p>最後將 phpinfo 的資訊顯示出來<br>
+先於 <code>/var/www/html</code> 下增加 <code>phpinfo.php</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">	phpinfo();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>之後即可於瀏覽器上開啟 <code>phpinfo.php</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;localhost&#x2F;phpinfo.php</span><br></pre></td></tr></table></figure>
+<p>如此即完成安裝</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://loume.github.io/2020/06/09/server-ran-out-of-threads-to-serve-requests/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Loume">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Loume's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/09/server-ran-out-of-threads-to-serve-requests/" itemprop="url">Server ran out of threads to serve requests.</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-06-09T15:32:22+08:00">
+                2020-06-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>當在短暫的時間內對 Server 發送的 Request 過多時有可能會發生<br>
+<code>Server ran out of threads to serve requests. Consider raising the ThreadsPerChild setting</code><br>
+的情況</p>
+<p>這是在 Apache 的 Error Log 下所查到的訊息<br>
+代表著目前 Apache Server 所開的線程不足以應付如此大量的請求，因而造成 Server Crash</p>
+<p>若在 httpd.conf 裡未設定 ThreadsPerChild 的話 Apache 會以預設開啟 64 個線程以供使用<br>
+如果一次性或是短暫時間內的 Request 超過就會 Crash 了<br>
+如有需要針對此做設定只需要於 httpd.conf 裡加上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;IfModule mpm_winnt_module&gt;</span><br><span class="line">ThreadsPerChild 512</span><br><span class="line">MaxRequestsPerChild 0</span><br><span class="line">&lt;&#x2F;IfModule&gt;</span><br></pre></td></tr></table></figure>
+<p>如此即是將線程設定為 512 個以供使用，如有需要變更即只要變更此數字即可</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://loume.github.io/2020/06/09/cocoapods/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Loume">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Loume's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/09/cocoapods/" itemprop="url">CocoaPods</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-06-09T15:31:44+08:00">
+                2020-06-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在開發 iOS App 如果該 App 有需要用到第三方套件時原本我們都是如何處理？<br>
+先在網路上(Github)上找可用的第三方套件然後下載下來解壓縮後將該套件所有的程式碼皆拉進 Project 裡<br>
+或許會建一個目錄專門放置這些第三方套件，但之後如果所使用的套件有更新或是異動時我們還要先去確認現在所使用的版本跟異動後的版本是否有什麼影響等等<br>
+等同於是在這個專案裡需要控管自己的程式與這些第三方套件，且之後有需要更新一樣是要先至網路上將新版的下載後解壓再拉進 Project 裡<br>
+這些操作是麻煩的，若是有什麼地方操作錯誤那麼就整個 GG 了<br>
+所以在網路上看到有許多人推薦使用 CocoaPods 來做這些第三方套件的版本控管<br>
+透過 CocoaPods 我們只需要定義所需要使用的是那幾個第三方套件及其版本<br>
+之後安裝及更新等皆只需要一個指令 CocoaPods 都幫我們處理好了，真是簡單方便丫</p>
+<p>CocoaPods 是一個 Ruby 的 Gem，所以只需要在 Terminal 下安裝指令<br>
+<code>[sudo] gem install cocoapods</code><br>
+之後<br>
+<code>pod setup</code><br>
+如此即完成 CocoaPods 的安裝</p>
+<p>查詢 CocoaPods 版本可利用 <code>pod --version</code><br>
+查詢套件可利用 <code>pod search + 'Github 上的套件名稱</code><br>
+如：查詢 AFNetworking =&gt; <code>pod search AFNetworking</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">-&gt; AFNetworking (2.5.4)</span><br><span class="line">   A delightful iOS and OS X networking framework.</span><br><span class="line">   pod &#39;AFNetworking&#39;, &#39;~&gt; 2.5.4&#39;</span><br><span class="line">   - Homepage: https:&#x2F;&#x2F;github.com&#x2F;AFNetworking&#x2F;AFNetworking</span><br><span class="line">   - Source:   https:&#x2F;&#x2F;github.com&#x2F;AFNetworking&#x2F;AFNetworking.git</span><br><span class="line">   - Versions: 2.5.4, 2.5.3, 2.5.2, 2.5.1, 2.5.0, 2.4.1, 2.4.0, 2.3.1, 2.3.0, 2.2.4, 2.2.3, 2.2.2, 2.2.1, 2.2.0, 2.1.0,</span><br><span class="line">   2.0.3, 2.0.2, 2.0.1, 2.0.0, 2.0.0-RC3, 2.0.0-RC2, 2.0.0-RC1, 1.3.4, 1.3.3, 1.3.2, 1.3.1, 1.3.0, 1.2.1, 1.2.0, 1.1.0,</span><br><span class="line">   1.0.1, 1.0, 1.0RC3, 1.0RC2, 1.0RC1, 0.10.1, 0.10.0, 0.9.2, 0.9.1, 0.9.0, 0.7.0, 0.5.1 [master repo]</span><br><span class="line">   - Subspecs:</span><br><span class="line">     - AFNetworking&#x2F;Serialization (2.5.4)</span><br><span class="line">     - AFNetworking&#x2F;Security (2.5.4)</span><br><span class="line">     - AFNetworking&#x2F;Reachability (2.5.4)</span><br><span class="line">     - AFNetworking&#x2F;NSURLConnection (2.5.4)</span><br><span class="line">     - AFNetworking&#x2F;NSURLSession (2.5.4)</span><br><span class="line">     - AFNetworking&#x2F;UIKit (2.5.4)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-&gt; AFNetworking+AutoRetry (0.0.5)</span><br><span class="line">   Auto Retries for AFNetworking requests</span><br><span class="line">   pod &#39;AFNetworking+AutoRetry&#39;, &#39;~&gt; 0.0.5&#39;</span><br><span class="line">   - Homepage: https:&#x2F;&#x2F;github.com&#x2F;shaioz&#x2F;AFNetworking-AutoRetry</span><br><span class="line">   - Source:   https:&#x2F;&#x2F;github.com&#x2F;shaioz&#x2F;AFNetworking-AutoRetry.git</span><br><span class="line">   - Versions: 0.0.5, 0.0.4, 0.0.3, 0.0.2, 0.0.1 [master repo]</span><br></pre></td></tr></table></figure>
+<p>等在套件名稱內有與 AFNetworking 相關的皆會條列出來</p>
+<p>那麼要如何將 CocoaPods 引用在 Xcode 中呢？<br>
+首先需要於 Project 目錄中建立 Podfile : <code>vi Podfile</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">platform :ios, &#39;7.0&#39;</span><br><span class="line">pod &#39;AFNetworking&#39;, &#39;~&gt; 2.5.4&#39;</span><br><span class="line">pod &#39;objective-zip&#39;, &#39;~&gt; 0.8.3&#39;</span><br><span class="line">pod &#39;FMDB&#39;, &#39;~&gt; 2.5&#39;</span><br><span class="line">pod &#39;MBProgressHUD&#39;, &#39;~&gt; 0.9.1&#39;</span><br><span class="line">pod &#39;Reachability&#39;, &#39;~&gt; 3.2&#39;</span><br><span class="line">pod &#39;SSKeychain&#39;, &#39;~&gt; 1.2.3&#39;</span><br></pre></td></tr></table></figure>
+<p>如此即是設定此 Project 是專為 iOS 7.0 以上所開發的<br>
+且使用了以下六個第三方的套件<br>
+AFNetworking 2.5.4<br>
+objective-zip 0.8.3<br>
+FMDB 2.5<br>
+MBProgressHUD 0.9.1<br>
+Reachability 3.2<br>
+SSKeychain 1.2.3</p>
+<p>在輸入完 Podfile 後即利用 <code>pod install</code> 來讓 CocoaPods 安裝這幾個套件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Downloading dependencies</span><br><span class="line">Installing AFNetworking (2.5.4)</span><br><span class="line">Installing FMDB (2.5)</span><br><span class="line">Installing MBProgressHUD (0.9.1)</span><br><span class="line">Installing Reachability (3.2)</span><br><span class="line">Installing SSKeychain (1.2.3)</span><br><span class="line">Installing objective-zip (0.8.3)</span><br><span class="line">Generating Pods project</span><br><span class="line">Integrating client project</span><br></pre></td></tr></table></figure>
+<p>如此即完成這些套件的安裝<br>
+之後皆要利用 projectname.xcworkspace 來開啟 Xcode<br>
+如此才能夠將 CocoaPods 所管理的套件引用在 Project 裡</p>
+<p>如果利用 projectname.xcworkspace 開啟 Xcode 後有 Error 如 ： <code>_OBJC_CLASS_$_AFHTTPRequestOperation&quot;, referenced from:</code><br>
+等情況可先於 Prject -&gt; Build Settings 查詢 “Other Linker Flags” 如果看到這個是以粗體顯示的情況<br>
+則點選後按下 delete 鍵會將原本的資料回復，而 “Other Linker Flags” 應該會恢復為原本的字體<br>
+如果這樣操作還是無法解決，則可能需要將原本所做的事皆復原後重新安裝 Pods</p>
+<p>參考：<br>
+<a href="http://tw.polydice.com/2012/07/04/cocoapods/" target="_blank" rel="noopener">CocoaPods：管理 Objective-C 專案裡頭各種 Library 關聯性最棒的方式</a><br>
+<a href="https://cocoapods.org" target="_blank" rel="noopener">CocoaPods 官網</a><br>
+<a href="http://blog.devtang.com/blog/2014/05/25/use-cocoapod-to-manage-ios-lib-dependency/" target="_blank" rel="noopener">用CocoaPods做iOS程序的依赖管理</a><br>
+<a href="http://4tyone.blogspot.tw/2013/09/cocoapods_4.html" target="_blank" rel="noopener">[詳細安裝圖文] Cocoapods 好用的第三方套件管理</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://loume.github.io/2020/06/09/iphone-crash-forces-the-reopen-method/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Loume">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Loume's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/09/iphone-crash-forces-the-reopen-method/" itemprop="url">iPhone 當機強制重開方法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-06-09T15:30:52+08:00">
+                2020-06-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>早上測試 App 時突然發現手上的 iPhone 6 突然都無法操作<br>
+點選 App 只會變灰，並不會開啟 App，且其他操作皆無用<br>
+點選電源按鈕亦無動作，最後不知怎麼用後螢幕全黑無法做任何操作<br>
+最後只好 Google 一下怎麼強動重新開機<br>
+利用組合鍵：Power + Home 鍵兩顆一起長按約五秒後即強制重開<br>
+如此才解決了手上 iPhone 6 這莫名其妙的問題</p>
+<p>Ref:<a href="http://ifans.pixnet.net/blog/post/146424420-iphone-%E7%95%B6%E6%A9%9F%E6%80%8E%E9%BA%BC%E8%BE%A6%EF%BC%9F%E5%BC%B7%E5%88%B6%E9%87%8D%E6%96%B0%E9%96%8B%E6%A9%9F%E5%90%A7%EF%BC%81" target="_blank" rel="noopener">iPhone 當機怎麼辦？強制重新開機吧！</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://loume.github.io/2020/06/09/page-settings-ie-compatibility-mode/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Loume">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Loume's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/09/page-settings-ie-compatibility-mode/" itemprop="url">網頁設置 IE 兼容模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-06-09T15:29:33+08:00">
+                2020-06-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>網頁設置要處理 IE 的相容性，否則有些網頁利用 IE 開啟時會因為使用的 engine 不同導致網頁的呈現完全跑掉<br>
+要如何設置 IE 用什麼樣的 engine 來執行網頁呢？<br>
+只需要於頁面中增加 <code>&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=?&quot; /&gt;</code> 即可</p>
+<p>如果要強制瀏覽器呈現特定版本的標準，如不支援 IE7 以下 :<br>
+<code>&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=11; IE=10; IE=9; IE=8; IE=7&quot; /&gt;</code><br>
+上面的設定即只支援 IE11 ~ IE7 ， IE6 及以下皆不支援</p>
+<p>當然也可以指定只支援某一個 IE 版本，如下<br>
+<code>&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=8&quot; /&gt;</code><br>
+這即代表只支援 IE8</p>
+<p>如果以使用者環境安裝的版本為主的話<br>
+<code>&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot; /&gt;</code><br>
+即什麼版本的 IE 即用其版本的標準模式</p>
+<p>參考:<br>
+<a href="http://injerry.pixnet.net/blog/post/57042465-%E3%80%90html%E6%95%99%E5%AD%B8%E3%80%91x-ua-compatible%E8%A8%AD%E7%BD%AEie%E5%85%BC%E5%AE%B9%E6%A8%A1%E5%BC%8F" target="_blank" rel="noopener">【HTML教學】X-UA-Compatible設置IE兼容模式</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://loume.github.io/2020/06/09/mac-terminal-set-default-export-path/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Loume">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Loume's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/09/mac-terminal-set-default-export-path/" itemprop="url">Mac Terminal 設定預設 export path</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-06-09T15:28:34+08:00">
+                2020-06-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>因為在公司工作環境中任何對外網路的連線皆需透過 proxy 才能夠正常的連線<br>
+而若是在 Terminal 下則需要每次手動去輸入<br>
+<code>export http_proxy=http://proxy.domain.name:port</code><br>
+<code>export https_proxy=http://proxy.domain.name:port</code><br>
+之後才能夠在下任何網路的指令時會自動透過 proxy 來做連線<br>
+不然就是還要看所下的指令有沒有額外提供設定 proxy 的參數<br>
+因此找了一下要怎麼樣在 Terminal 裡不需額外輸入任何指令即能夠自動透過 proxy 連網<br>
+<code>vi ~/.bash_profile</code><br>
+在內容登打</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#http proxy setting</span><br><span class="line">export http_proxy&#x3D;http:&#x2F;&#x2F;proxy.domain.name:port</span><br><span class="line">export https_proxy&#x3D;http:&#x2F;&#x2F;proxy.domain.name:port</span><br></pre></td></tr></table></figure>
+<p>之後存檔，如此每次在開啟 Terminal 時即會自動將這兩行指令執行，即不需再為此而煩惱了</p>
+<p>若是案照於 Linux 下的習慣多半會編輯在 <code>~/.bashrc</code> 裡<br>
+但因 Mac 系統的設定參照 <a href="http://www.joshstaiger.org/archives/2005/07/bash_profile_vs.html" target="_blank" rel="noopener">.bash_profile vs .bashrc</a> 的說法還是需要多再編輯 <code>~/.bash_profile</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if [ -f ~&#x2F;.bashrc ]; then</span><br><span class="line">    source ~&#x2F;.bashrc</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p>如此才能夠正常運作</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://loume.github.io/2020/06/09/mac-install-source-code-pro-fonts/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Loume">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Loume's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/09/mac-install-source-code-pro-fonts/" itemprop="url">Mac 安裝 Source Code Pro 字型</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-06-09T15:27:41+08:00">
+                2020-06-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>如何於 Mac 上安裝 Source Code Pro 的字型呢？<br>
+首先到 <a href="https://github.com/adobe-fonts/source-code-pro" target="_blank" rel="noopener">Adobe Fonts/Source Code Pro</a> 上將 Latest release 的檔案下載下來並解壓縮<br>
+再利用 Launchpad 中將 <code>字體簿</code> 開啟後點選 + 號並將 Source Code Pro 的目錄選擇後系統即會將此字型安裝上去<br>
+之後即可於其他編輯器選到這個字型了</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://loume.github.io/2020/06/09/mac-set-up-apache-to-open-user-directory/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Loume">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Loume's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/09/mac-set-up-apache-to-open-user-directory/" itemprop="url">Mac 設定 Apache 開啟 User Level Root</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-06-09T15:26:01+08:00">
+                2020-06-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>首先於家目錄中建立 Sites 目錄<br>
+<code>mkdir ~/Sites</code></p>
+<p>接下來於 /etc/apache2/users/ 下建立 username.conf<br>
+<code>cd /etc/apache2/users/</code><br>
+<code>sudo vi username.conf</code><br>
+並將名字帶入下面的 username 裡</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;Directory &quot;&#x2F;Users&#x2F;username&#x2F;Sites&#x2F;&quot;&gt;</span><br><span class="line">AllowOverride All</span><br><span class="line">Options Indexes MultiViews FollowSymLinks</span><br><span class="line">Require all granted</span><br><span class="line">&lt;&#x2F;Directory&gt;</span><br></pre></td></tr></table></figure>
+<p>再來將這個設定檔更改權限<br>
+<code>sudo chmod 644 username.conf</code><br>
+之後於 httpd.conf 中開啟一些設定<br>
+<code>sudo vi /etc/apache2/httpd.conf</code><br>
+將以下三個模組打開<br>
+<code>LoadModule authz_core_module libexec/apache2/mod_authz_core.so</code><br>
+<code>LoadModule authz_host_module libexec/apache2/mod_authz_host.so</code><br>
+<code>LoadModule userdir_module libexec/apache2/mod_userdir.so</code><br>
+最後打開 incloude userdir<br>
+<code>Include /private/etc/apache2/extra/httpd-userdir.conf</code><br>
+接著修改 httpd-userdir.conf<br>
+<code>sudo vi /etc/apache2/extra/httpd-userdir.conf</code><br>
+將引用 users 下設定檔的註解拿掉<br>
+<code>Include /private/etc/apache2/users/*.conf </code><br>
+重新啟動 Apache<br>
+<code>sudo apachectl restart</code><br>
+之後即可於瀏覽器中 <code>http://localhost/~username/</code> 看到正常的網頁了</p>
+
           
         
       
@@ -340,6 +1564,10 @@
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+  </nav>
+
 
 
           </div>
@@ -383,12 +1611,21 @@
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">文章</span>
                 </a>
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分類</span>
+                
+              </div>
             
 
             
@@ -396,7 +1633,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">標籤</span>
                 
               </div>

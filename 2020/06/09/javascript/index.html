@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="JavaScript," />
 
 
 
@@ -79,12 +79,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Loume&#39;s blog">
-<meta property="og:url" content="https://loume.github.io/tags/Docker/index.html">
+<meta name="description" content="字串轉換為數字 1Number(String); 數字轉換為字串 1Number.toString(); 顯示數字千分位 123456function FormatNumber(n) &amp;#123;    n +&#x3D; &quot;&quot;;    var arr &#x3D; n.split(&quot;.&quot;);    var re &#x3D; &#x2F;(\d&amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript">
+<meta property="og:url" content="https://loume.github.io/2020/06/09/javascript/index.html">
 <meta property="og:site_name" content="Loume&#39;s blog">
+<meta property="og:description" content="字串轉換為數字 1Number(String); 數字轉換為字串 1Number.toString(); 顯示數字千分位 123456function FormatNumber(n) &amp;#123;    n +&#x3D; &quot;&quot;;    var arr &#x3D; n.split(&quot;.&quot;);    var re &#x3D; &#x2F;(\d&amp;#123;">
 <meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2020-06-09T07:34:06.000Z">
+<meta property="article:modified_time" content="2020-06-09T07:34:26.544Z">
 <meta property="article:author" content="Loume">
+<meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
 
 
@@ -115,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://loume.github.io/tags/Docker/"/>
+  <link rel="canonical" href="https://loume.github.io/2020/06/09/javascript/"/>
 
 
 
 
 
-  <title>標籤: Docker | Loume's blog</title>
+  <title>JavaScript | Loume's blog</title>
   
 
 
@@ -140,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -214,54 +219,157 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>Docker<small>標籤</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://loume.github.io/2020/06/09/javascript/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Loume">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Loume's blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2020/06/09/docker-priviledged-params/" itemprop="url">
-              
-                <span itemprop="name">Docker privileged 參數</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">JavaScript</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-06-09T15:11:59+08:00"
-              content="2020-06-09" >
-          06-09
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-06-09T15:34:06+08:00">
+                2020-06-09
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    </div>
+      
 
+      
+        <h2 id="字串轉換為數字">字串轉換為數字</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Number(String);</span><br></pre></td></tr></table></figure>
+<h2 id="數字轉換為字串">數字轉換為字串</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Number.toString();</span><br></pre></td></tr></table></figure>
+<h2 id="顯示數字千分位">顯示數字千分位</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function FormatNumber(n) &#123;</span><br><span class="line">    n +&#x3D; &quot;&quot;;</span><br><span class="line">    var arr &#x3D; n.split(&quot;.&quot;);</span><br><span class="line">    var re &#x3D; &#x2F;(\d&#123;1,3&#125;)(?&#x3D;(\d&#123;3&#125;)+$)&#x2F;g;</span><br><span class="line">    return arr[0].replace(re, &quot;$1,&quot;) + (arr.length &#x3D;&#x3D; 2 ? &quot;.&quot; + arr[1] : &quot;&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="四拾五入至小數點">四拾五入至小數點</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var roundDecimal &#x3D; function (val, precision) &#123;</span><br><span class="line">    return Math.round(Math.round(val * Math.pow(10, (precision || 0) + 1)) &#x2F; 10) &#x2F; Math.pow(10, (precision || 0));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i> JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/06/09/ubuntu-install-lemp/" rel="next" title="Ubuntu 14.04 安裝 LEMP">
+                <i class="fa fa-chevron-left"></i> Ubuntu 14.04 安裝 LEMP
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/06/09/mac-install-nginx-php/" rel="prev" title="mac-install-nginx-php">
+                mac-install-nginx-php <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -269,6 +377,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -289,8 +401,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概覽
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -350,6 +471,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#字串轉換為數字"><span class="nav-number">1.</span> <span class="nav-text">字串轉換為數字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#數字轉換為字串"><span class="nav-number">2.</span> <span class="nav-text">數字轉換為字串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#顯示數字千分位"><span class="nav-number">3.</span> <span class="nav-text">顯示數字千分位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四拾五入至小數點"><span class="nav-number">4.</span> <span class="nav-text">四拾五入至小數點</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -483,6 +620,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

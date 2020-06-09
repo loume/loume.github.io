@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Docker," />
+  <meta name="keywords" content="MacOS, Terminal," />
 
 
 
@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="透過 Docker 包裝來運行 Angular 9container  所開發的 web 在 ng serve 時會遇到一堆錯誤 原因是因為 fs.inotify.max_user_watches 所設定的值太少, 而要監控的檔案太多因此而有此錯誤發生, 故需要在 Docker 執行時增加 priviledged 參數 1docker run -it --privileged">
+<meta name="description" content="因為在公司工作環境中任何對外網路的連線皆需透過 proxy 才能夠正常的連線 而若是在 Terminal 下則需要每次手動去輸入 export http_proxy&#x3D;http:&#x2F;&#x2F;proxy.domain.name:port export https_proxy&#x3D;http:&#x2F;&#x2F;proxy.domain.name:port 之後才能夠在下任何網路的指令時會自動透過 proxy 來做連線 不然就是還要">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Docker privileged 參數">
-<meta property="og:url" content="https://loume.github.io/2020/06/09/docker_priviledged_params/index.html">
+<meta property="og:title" content="Mac Terminal 設定預設 export path">
+<meta property="og:url" content="https://loume.github.io/2020/06/09/mac-terminal-set-default-export-path/index.html">
 <meta property="og:site_name" content="Loume&#39;s blog">
-<meta property="og:description" content="透過 Docker 包裝來運行 Angular 9container  所開發的 web 在 ng serve 時會遇到一堆錯誤 原因是因為 fs.inotify.max_user_watches 所設定的值太少, 而要監控的檔案太多因此而有此錯誤發生, 故需要在 Docker 執行時增加 priviledged 參數 1docker run -it --privileged">
+<meta property="og:description" content="因為在公司工作環境中任何對外網路的連線皆需透過 proxy 才能夠正常的連線 而若是在 Terminal 下則需要每次手動去輸入 export http_proxy&#x3D;http:&#x2F;&#x2F;proxy.domain.name:port export https_proxy&#x3D;http:&#x2F;&#x2F;proxy.domain.name:port 之後才能夠在下任何網路的指令時會自動透過 proxy 來做連線 不然就是還要">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2020-06-09T07:11:59.000Z">
-<meta property="article:modified_time" content="2020-06-09T07:17:45.041Z">
+<meta property="article:published_time" content="2020-06-09T07:28:34.000Z">
+<meta property="article:modified_time" content="2020-06-09T07:29:16.587Z">
 <meta property="article:author" content="Loume">
-<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="MacOS, Terminal">
 <meta name="twitter:card" content="summary">
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://loume.github.io/2020/06/09/docker_priviledged_params/"/>
+  <link rel="canonical" href="https://loume.github.io/2020/06/09/mac-terminal-set-default-export-path/"/>
 
 
 
 
 
-  <title>Docker privileged 參數 | Loume's blog</title>
+  <title>Mac Terminal 設定預設 export path | Loume's blog</title>
   
 
 
@@ -233,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://loume.github.io/2020/06/09/docker_priviledged_params/">
+    <link itemprop="mainEntityOfPage" href="https://loume.github.io/2020/06/09/mac-terminal-set-default-export-path/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Loume">
@@ -250,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Docker privileged 參數</h1>
+          <h1 class="post-title" itemprop="name headline">Mac Terminal 設定預設 export path</h1>
         
 
         <div class="post-meta">
@@ -262,7 +262,7 @@
               
                 <span class="post-meta-item-text">發表於</span>
               
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-06-09T15:11:59+08:00">
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-06-09T15:28:34+08:00">
                 2020-06-09
               </time>
             
@@ -300,9 +300,22 @@
       
 
       
-        <p>透過 Docker 包裝來運行 Angular 9container  所開發的 web 在 ng serve 時會遇到一堆錯誤<br>
-原因是因為 <code>fs.inotify.max_user_watches</code> 所設定的值太少, 而要監控的檔案太多因此而有此錯誤發生, 故需要在 Docker 執行時增加 priviledged 參數</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it --privileged</span><br></pre></td></tr></table></figure>
+        <p>因為在公司工作環境中任何對外網路的連線皆需透過 proxy 才能夠正常的連線<br>
+而若是在 Terminal 下則需要每次手動去輸入<br>
+<code>export http_proxy=http://proxy.domain.name:port</code><br>
+<code>export https_proxy=http://proxy.domain.name:port</code><br>
+之後才能夠在下任何網路的指令時會自動透過 proxy 來做連線<br>
+不然就是還要看所下的指令有沒有額外提供設定 proxy 的參數<br>
+因此找了一下要怎麼樣在 Terminal 裡不需額外輸入任何指令即能夠自動透過 proxy 連網<br>
+<code>vi ~/.bash_profile</code><br>
+在內容登打</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#http proxy setting</span><br><span class="line">export http_proxy&#x3D;http:&#x2F;&#x2F;proxy.domain.name:port</span><br><span class="line">export https_proxy&#x3D;http:&#x2F;&#x2F;proxy.domain.name:port</span><br></pre></td></tr></table></figure>
+<p>之後存檔，如此每次在開啟 Terminal 時即會自動將這兩行指令執行，即不需再為此而煩惱了</p>
+<p>若是案照於 Linux 下的習慣多半會編輯在 <code>~/.bashrc</code> 裡<br>
+但因 Mac 系統的設定參照 <a href="http://www.joshstaiger.org/archives/2005/07/bash_profile_vs.html" target="_blank" rel="noopener">.bash_profile vs .bashrc</a> 的說法還是需要多再編輯 <code>~/.bash_profile</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if [ -f ~&#x2F;.bashrc ]; then</span><br><span class="line">    source ~&#x2F;.bashrc</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p>如此才能夠正常運作</p>
+
       
     </div>
     
@@ -319,7 +332,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Docker/" rel="tag"><i class="fa fa-tag"></i> Docker</a>
+            <a href="/tags/MacOS-Terminal/" rel="tag"><i class="fa fa-tag"></i> MacOS, Terminal</a>
           
         </div>
       
@@ -328,6 +341,26 @@
       
       
 
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/06/09/mac-install-source-code-pro-fonts/" rel="next" title="Mac 安裝 Source Code Pro 字型">
+                <i class="fa fa-chevron-left"></i> Mac 安裝 Source Code Pro 字型
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/06/09/page-settings-ie-compatibility-mode/" rel="prev" title="網頁設置 IE 兼容模式">
+                網頁設置 IE 兼容模式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
 
       
@@ -392,12 +425,21 @@
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">文章</span>
                 </a>
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分類</span>
+                
+              </div>
             
 
             
@@ -405,7 +447,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">標籤</span>
                 
               </div>
